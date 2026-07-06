@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NVIDIA AI Infrastructure &amp; Operations — Certification Practice</title>
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo.png" alt="IdeaWeaver logo" class="brand-logo" />
+    <div class="brand-text">
+      <span class="brand-name">IdeaWeaver</span>
+      <span class="brand-sub">Certification Prep</span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <span id="examTimerDisplay" class="timer hidden">60:00</span>
+    <button id="homeBtn" class="btn btn-ghost hidden">Exit</button>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- START SCREEN -->
+  <section id="startScreen" class="screen">
+    <div class="hero">
+      <h1>NVIDIA-Certified Associate<br /><span class="accent">AI Infrastructure and Operations</span></h1>
+      <p class="hero-sub">50 exam-style questions covering GPU architecture, NVIDIA software stack, distributed training, networking, and infrastructure operations.</p>
+    </div>
+
+    <div class="mode-cards">
+      <div class="mode-card">
+        <div class="mode-icon">📘</div>
+        <h2>Practice Mode</h2>
+        <p>Work through all 50 questions at your own pace. Check the answer and read the full explanation after each question. No timer.</p>
+        <ul class="mode-features">
+          <li>Instant answer + explanation</li>
+          <li>Exam tips for every question</li>
+          <li>Untimed, self-paced</li>
+        </ul>
+        <button class="btn btn-primary" id="startPracticeBtn">Start Practice Mode</button>
+      </div>
+
+      <div class="mode-card">
+        <div class="mode-icon">⏱️</div>
+        <h2>Exam Mode</h2>
+        <p>Simulate the real certification exam: all 50 questions, 60-minute countdown timer, no answers shown until you submit.</p>
+        <ul class="mode-features">
+          <li>60-minute timer</li>
+          <li>Question navigator</li>
+          <li>Full score report + review at the end</li>
+        </ul>
+        <button class="btn btn-primary" id="startExamBtn">Start Exam Mode</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE MODE -->
+  <section id="practiceScreen" class="screen hidden">
+    <div class="quiz-layout">
+      <div class="quiz-main">
+        <div class="progress-row">
+          <div class="progress-label">Question <span id="pQNum">1</span> of <span id="pQTotal">50</span></div>
+          <div class="progress-bar"><div id="pProgressFill" class="progress-fill"></div></div>
+        </div>
+
+        <div class="question-card">
+          <p class="question-text" id="pQuestionText"></p>
+          <div class="options" id="pOptions"></div>
+        </div>
+
+        <div id="pFeedback" class="feedback hidden"></div>
+
+        <div class="nav-row">
+          <button id="pPrevBtn" class="btn btn-ghost">Previous</button>
+          <div class="nav-row-right">
+            <button id="pSkipBtn" class="btn btn-ghost">Skip for now</button>
+            <button id="pCheckBtn" class="btn btn-primary">Check Answer</button>
+            <button id="pNextBtn" class="btn btn-primary hidden">Next Question</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="quiz-side">
+        <h3>Question Navigator</h3>
+        <div id="practiceNavGrid" class="nav-grid"></div>
+        <div class="nav-legend">
+          <span><i class="dot dot-correct"></i> Correct</span>
+          <span><i class="dot dot-incorrect"></i> Incorrect</span>
+          <span><i class="dot dot-flagged"></i> Skipped / flagged</span>
+          <span><i class="dot dot-unanswered"></i> Not yet checked</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- EXAM MODE -->
+  <section id="examScreen" class="screen hidden">
+    <div class="quiz-layout">
+      <div class="quiz-main">
+        <div class="progress-row">
+          <div class="progress-label">Question <span id="eQNum">1</span> of <span id="eQTotal">50</span></div>
+          <div class="progress-bar"><div id="eProgressFill" class="progress-fill"></div></div>
+        </div>
+
+        <div class="question-card">
+          <p class="question-text" id="eQuestionText"></p>
+          <div class="options" id="eOptions"></div>
+        </div>
+
+        <div class="nav-row">
+          <button id="ePrevBtn" class="btn btn-ghost">Previous</button>
+          <div class="nav-row-right">
+            <button id="eSkipBtn" class="btn btn-ghost">Skip for now</button>
+            <button id="eNextBtn" class="btn btn-primary">Next Question</button>
+            <button id="eSubmitBtn" class="btn btn-submit hidden">Submit Exam</button>
+          </div>
+        </div>
+      </div>
+
+      <aside class="quiz-side">
+        <h3>Question Navigator</h3>
+        <div id="examNavGrid" class="nav-grid"></div>
+        <div class="nav-legend">
+          <span><i class="dot dot-answered"></i> Answered</span>
+          <span><i class="dot dot-flagged"></i> Skipped / flagged</span>
+          <span><i class="dot dot-current"></i> Current</span>
+          <span><i class="dot dot-unanswered"></i> Unanswered</span>
+        </div>
+        <button id="eSubmitBtnSide" class="btn btn-submit">Submit Exam</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- RESULTS SCREEN -->
+  <section id="resultsScreen" class="screen hidden">
+    <div class="results-summary">
+      <h1>Exam Results</h1>
+      <div class="score-circle" id="scoreCircle">
+        <span id="scorePercent">0%</span>
+      </div>
+      <p id="scoreDetail" class="score-detail"></p>
+      <div class="results-actions">
+        <button class="btn btn-primary" id="reviewBtn">Review Answers</button>
+        <button class="btn btn-ghost" id="retakeBtn">Retake Exam</button>
+        <button class="btn btn-ghost" id="backHomeBtn">Back to Home</button>
+      </div>
+    </div>
+
+    <div id="reviewList" class="review-list hidden"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>IdeaWeaver · Unofficial practice material for the NVIDIA-Certified Associate: AI Infrastructure and Operations exam</span>
+</footer>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
