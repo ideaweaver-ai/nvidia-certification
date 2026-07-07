@@ -416,3 +416,24 @@ function buildReview() {
 $("retakeBtn").addEventListener("click", () => {
   startExam();
 });
+
+/* ===================== Video preview thumbnails ===================== */
+
+function playVideoThumb(thumb) {
+  const videoId = thumb.dataset.videoId;
+  const label = thumb.querySelector(".video-thumb-label")?.textContent || "video";
+  const wrapper = document.createElement("div");
+  wrapper.className = "video-embed";
+  wrapper.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" title="${label}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  thumb.replaceWith(wrapper);
+}
+
+document.querySelectorAll(".video-thumb").forEach(thumb => {
+  thumb.addEventListener("click", () => playVideoThumb(thumb));
+  thumb.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      playVideoThumb(thumb);
+    }
+  });
+});

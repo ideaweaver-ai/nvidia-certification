@@ -182,6 +182,138 @@ main#app {
   margin: 0 auto;
 }
 
+.video-callout {
+  max-width: 780px;
+  margin: 0 auto 40px;
+  padding: 20px 26px 26px;
+  border: 1px solid rgba(118, 185, 0, 0.35);
+  background: rgba(118, 185, 0, 0.06);
+  border-radius: var(--radius);
+  text-align: left;
+}
+
+.video-callout-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.video-callout-icon {
+  flex: 0 0 auto;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.video-callout-header h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.video-callout-header p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .video-grid { grid-template-columns: 1fr; }
+}
+
+.video-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #000;
+  border: 1px solid var(--border);
+}
+
+.video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.video-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  transition: background 0.2s ease;
+}
+
+.video-thumb:hover::after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.video-thumb:hover img {
+  transform: scale(1.03);
+}
+
+.video-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--nv-green);
+  color: #06210a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding-left: 3px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.video-thumb:hover .video-play-icon {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-thumb-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+}
+
+.video-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .mode-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -190,6 +322,84 @@ main#app {
 
 @media (max-width: 760px) {
   .mode-cards { grid-template-columns: 1fr; }
+}
+
+.course-promo {
+  display: block;
+  max-width: 780px;
+  margin: 32px auto 0;
+  padding: 26px 30px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(79, 70, 229, 0.06));
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.course-promo:hover {
+  border-color: rgba(139, 92, 246, 0.7);
+  transform: translateY(-2px);
+}
+
+.course-promo-eyebrow {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #c4b5fd;
+  margin-bottom: 10px;
+}
+
+.course-promo-title {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.course-promo-highlight {
+  background: linear-gradient(90deg, #a78bfa, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.course-promo-desc {
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+.course-promo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.course-promo-tags span {
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.course-promo-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #7c3aed, #4f46e5);
+  padding: 10px 20px;
+  border-radius: 8px;
 }
 
 .mode-card {
