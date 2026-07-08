@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NVIDIA AI Infrastructure &amp; Operations — Certification Practice</title>
+<title id="pageTitle">Certification Practice — IdeaWeaver</title>
 <link rel="icon" href="assets/logo.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body id="appBody">
 
 <header class="topbar">
   <div class="brand">
     <img src="assets/logo.png" alt="IdeaWeaver logo" class="brand-logo" />
     <div class="brand-text">
       <span class="brand-name">IdeaWeaver</span>
-      <span class="brand-sub">Certification Prep</span>
+      <span class="brand-sub" id="brandSub">Certification Prep</span>
     </div>
   </div>
   <div class="topbar-right">
@@ -23,64 +23,16 @@
   </div>
 </header>
 
+<nav class="exam-tabs" id="examTabs">
+  <button class="exam-tab" data-exam="nvidia">NVIDIA Exam</button>
+  <button class="exam-tab" data-exam="aws">AWS AI Exam</button>
+</nav>
+
 <main id="app">
 
   <!-- START SCREEN -->
   <section id="startScreen" class="screen">
-    <div class="hero">
-      <h1>NVIDIA-Certified Associate<br /><span class="accent">AI Infrastructure and Operations</span></h1>
-      <p class="hero-sub">50 exam-style questions covering GPU architecture, NVIDIA software stack, distributed training, networking, and infrastructure operations.</p>
-    </div>
-
-    <div class="video-callout">
-      <div class="video-callout-header">
-        <span class="video-callout-icon">🎥</span>
-        <div>
-          <h3>New to this exam? Watch this before you start</h3>
-          <p>A quick walkthrough of the certification and how to get the most out of this practice test.</p>
-        </div>
-      </div>
-      <div class="video-grid">
-        <div class="video-thumb" data-video-id="xt8Aysu0IQM" role="button" tabindex="0" aria-label="Play: Watch in English">
-          <img src="https://img.youtube.com/vi/xt8Aysu0IQM/hqdefault.jpg" alt="" loading="lazy" />
-          <span class="video-play-icon">▶</span>
-          <span class="video-thumb-label">Watch in English</span>
-        </div>
-        <div class="video-thumb" data-video-id="L4u-GHTnKoQ" role="button" tabindex="0" aria-label="Play: हिंदी में देखें">
-          <img src="https://img.youtube.com/vi/L4u-GHTnKoQ/hqdefault.jpg" alt="" loading="lazy" />
-          <span class="video-play-icon">▶</span>
-          <span class="video-thumb-label">हिंदी में देखें</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="mode-cards">
-      <div class="mode-card">
-        <div class="mode-icon">📘</div>
-        <h2>Practice Mode</h2>
-        <p>Work through all 50 questions at your own pace. Check the answer and read the full explanation after each question. No timer.</p>
-        <ul class="mode-features">
-          <li>Instant answer + explanation</li>
-          <li>Exam tips for every question</li>
-          <li>Untimed, self-paced</li>
-        </ul>
-        <button class="btn btn-primary" id="startPracticeBtn">Start Practice Mode</button>
-      </div>
-
-      <div class="mode-card">
-        <div class="mode-icon">⏱️</div>
-        <h2>Exam Mode</h2>
-        <p>Simulate the real certification exam: all 50 questions, 60-minute countdown timer, no answers shown until you submit.</p>
-        <ul class="mode-features">
-          <li>60-minute timer</li>
-          <li>Question navigator</li>
-          <li>Full score report + review at the end</li>
-        </ul>
-        <button class="btn btn-primary" id="startExamBtn">Start Exam Mode</button>
-      </div>
-    </div>
-
-    <a href="https://ideaweaver.ai/#courses" target="_blank" rel="noopener noreferrer" class="course-promo">
+    <a href="https://ideaweaver.ai/#courses" target="_blank" rel="noopener noreferrer" class="course-promo course-promo-top">
       <span class="course-promo-eyebrow">💡 Working at the intersection of DevOps and AI?</span>
       <h3 class="course-promo-title">GenAI for <span class="course-promo-highlight">DevOps Engineers</span></h3>
       <p class="course-promo-desc">Integrate Generative AI into your DevOps workflows — AWS Bedrock, Kubernetes AI agents, RAG, and fine-tuning. Live 4-week cohort.</p>
@@ -92,6 +44,48 @@
       </div>
       <span class="course-promo-cta">Explore Course →</span>
     </a>
+
+    <div class="hero">
+      <h1><span id="heroTop">Certification</span><br /><span class="accent" id="heroAccent">Practice</span></h1>
+      <p class="hero-sub" id="heroSub"></p>
+    </div>
+
+    <div class="video-callout">
+      <div class="video-callout-header">
+        <span class="video-callout-icon">🎥</span>
+        <div>
+          <h3>New to this exam? Watch this before you start</h3>
+          <p>A quick walkthrough of the certification and how to get the most out of this practice test.</p>
+        </div>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+    </div>
+
+    <div class="mode-cards">
+      <div class="mode-card">
+        <div class="mode-icon">📘</div>
+        <h2>Practice Mode</h2>
+        <p id="pModeDesc">Work through all questions at your own pace. Check the answer and read the full explanation after each question. No timer.</p>
+        <ul class="mode-features">
+          <li>Instant answer + explanation</li>
+          <li>Exam tips for every question</li>
+          <li>Untimed, self-paced</li>
+        </ul>
+        <button class="btn btn-primary" id="startPracticeBtn">Start Practice Mode</button>
+      </div>
+
+      <div class="mode-card">
+        <div class="mode-icon">⏱️</div>
+        <h2>Exam Mode</h2>
+        <p id="eModeDesc">Simulate the real certification exam with a countdown timer. No answers shown until you submit.</p>
+        <ul class="mode-features">
+          <li id="eTimerFeature">Timed</li>
+          <li>Question navigator</li>
+          <li>Full score report + review at the end</li>
+        </ul>
+        <button class="btn btn-primary" id="startExamBtn">Start Exam Mode</button>
+      </div>
+    </div>
   </section>
 
   <!-- PRACTICE MODE -->
@@ -99,12 +93,13 @@
     <div class="quiz-layout">
       <div class="quiz-main">
         <div class="progress-row">
-          <div class="progress-label">Question <span id="pQNum">1</span> of <span id="pQTotal">50</span></div>
+          <div class="progress-label">Question <span id="pQNum">1</span> of <span id="pQTotal">1</span></div>
           <div class="progress-bar"><div id="pProgressFill" class="progress-fill"></div></div>
         </div>
 
         <div class="question-card">
           <p class="question-text" id="pQuestionText"></p>
+          <div id="pMultiHint" class="multi-hint hidden">☑️ Select all correct answers for this question.</div>
           <div class="options" id="pOptions"></div>
         </div>
 
@@ -138,12 +133,13 @@
     <div class="quiz-layout">
       <div class="quiz-main">
         <div class="progress-row">
-          <div class="progress-label">Question <span id="eQNum">1</span> of <span id="eQTotal">50</span></div>
+          <div class="progress-label">Question <span id="eQNum">1</span> of <span id="eQTotal">1</span></div>
           <div class="progress-bar"><div id="eProgressFill" class="progress-fill"></div></div>
         </div>
 
         <div class="question-card">
           <p class="question-text" id="eQuestionText"></p>
+          <div id="eMultiHint" class="multi-hint hidden">☑️ Select all correct answers for this question.</div>
           <div class="options" id="eOptions"></div>
         </div>
 
@@ -192,10 +188,11 @@
 </main>
 
 <footer class="footer">
-  <span>IdeaWeaver · Unofficial practice material for the NVIDIA-Certified Associate: AI Infrastructure and Operations exam</span>
+  <span id="footerText">IdeaWeaver · Unofficial certification practice material.</span>
 </footer>
 
-<script src="questions.js"></script>
+<script src="nvidia-questions.js"></script>
+<script src="aws-questions.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

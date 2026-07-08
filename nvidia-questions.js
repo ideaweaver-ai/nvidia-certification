@@ -1,6 +1,6 @@
-const QUIZ_TITLE = "NVIDIA-Certified Associate: AI Infrastructure and Operations";
+const NVIDIA_TITLE = "NVIDIA-Certified Associate: AI Infrastructure and Operations";
 
-const QUESTIONS = [
+const NVIDIA_QUESTIONS = [
 {
   q: "A technology company is building its first AI-powered customer support platform. During a planning meeting, the engineering team discusses Artificial Intelligence, Machine Learning, and Deep Learning. One engineer says these terms are interchangeable, while another argues they represent different concepts. Which statement most accurately describes their relationship?",
   options: {
