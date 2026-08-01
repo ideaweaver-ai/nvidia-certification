@@ -245,7 +245,7 @@ const NVIDIA_PART2_QUESTIONS = [
   q: "Which NVIDIA software is primarily used to monitor and manage the health, performance, and utilization of GPUs in data centers?",
   options: {
     A: "CUDA",
-    B: "DCGM (Data Center GPU Manager)",
+    B: "DCGM",
     C: "NCCL",
     D: "TensorRT"
   },
