@@ -293,12 +293,12 @@ const NVIDIA_PART2_QUESTIONS = [
   q: "Which TWO of the following components are installed and managed by the NVIDIA GPU Operator to enable GPU support in a Kubernetes cluster?",
   options: {
     A: "NVIDIA Kubernetes Device Plugin and NVIDIA Container Toolkit",
-    B: "Kubernetes Scheduler and etcd",
-    C: "CoreDNS and kube-apiserver",
-    D: "kubelet and kube-proxy"
+    B: "NVIDIA Driver and NVIDIA CUDA Toolkit",
+    C: "NVIDIA Container Toolkit and nvidia-docker",
+    D: "GPU Feature Discovery and NVIDIA Triton Inference Server"
   },
   correct: "A",
-  explanation: "The NVIDIA GPU Operator installs GPU-related components including the NVIDIA Container Toolkit (lets containers access GPUs) and the NVIDIA Kubernetes Device Plugin (advertises GPU resources like nvidia.com/gpu so workloads can be scheduled).\n\nB, C, and D are all core Kubernetes components (scheduler, etcd, CoreDNS, kube-apiserver, kubelet, kube-proxy) — none are installed or managed by the NVIDIA GPU Operator.",
+  explanation: "The NVIDIA GPU Operator installs GPU-related components including the NVIDIA Container Toolkit (lets containers access GPUs) and the NVIDIA Kubernetes Device Plugin (advertises GPU resources like nvidia.com/gpu so workloads can be scheduled).\n\nB is wrong: the NVIDIA Driver is installed by the Operator, but the CUDA Toolkit is a developer library for building GPU applications — it isn't a separate component the Operator deploys and manages in the cluster.\n\nC is wrong: the NVIDIA Container Toolkit is correct, but nvidia-docker is the deprecated legacy runtime it replaced — the Operator doesn't install nvidia-docker.\n\nD is wrong: GPU Feature Discovery is a real Operator component, but NVIDIA Triton Inference Server is a model-serving workload you deploy on top of the cluster, not something the Operator installs or manages.",
   tip: "GPU Operator installs: NVIDIA Driver, Container Toolkit, Device Plugin, GPU Feature Discovery, DCGM, DCGM Exporter, MIG Manager, Operator Validator — never core Kubernetes components."
 },
 {
