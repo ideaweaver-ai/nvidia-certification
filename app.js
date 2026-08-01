@@ -15,6 +15,17 @@ const EXAMS = {
       { id: "L4u-GHTnKoQ", label: "हिंदी में देखें" }
     ]
   },
+  nvidia2: {
+    key: "nvidia2",
+    label: "NVIDIA Exam (Part 2)",
+    title: NVIDIA_PART2_TITLE,
+    heroTop: "NVIDIA-Certified Associate",
+    heroAccent: "AI Infrastructure and Operations — Part 2",
+    heroSub: `${NVIDIA_PART2_QUESTIONS.length} additional exam-style questions covering GPU architecture, robotics platforms, NVIDIA software stack, data center infrastructure, and inference deployment.`,
+    questions: NVIDIA_PART2_QUESTIONS,
+    durationMinutes: 60,
+    videos: []
+  },
   aws: {
     key: "aws",
     label: "AWS AI Exam",
@@ -101,7 +112,10 @@ function renderVideoGrid() {
 
 function renderStartScreen() {
   const ex = currentExam();
-  document.body.className = `theme-${ex.key}`;
+  Array.from(document.body.classList)
+    .filter(cls => cls.startsWith("theme-"))
+    .forEach(cls => document.body.classList.remove(cls));
+  document.body.classList.add(`theme-${ex.key}`);
   $("pageTitle").textContent = `${ex.label} — Certification Practice`;
   $("brandSub").textContent = ex.label;
   $("heroTop").textContent = ex.heroTop;
@@ -112,6 +126,7 @@ function renderStartScreen() {
   $("eTimerFeature").textContent = `${ex.durationMinutes}-minute timer`;
   $("footerText").textContent = `IdeaWeaver · Unofficial practice material for the ${ex.title} exam`;
   $("examTimerDisplay").textContent = formatTime(ex.durationMinutes * 60);
+  $("videoCallout").classList.toggle("hidden", ex.videos.length === 0);
   renderVideoGrid();
   document.querySelectorAll(".exam-tab").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.exam === activeExam);

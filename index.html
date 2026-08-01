@@ -7,7 +7,29 @@
 <link rel="icon" href="assets/logo.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
-<body id="appBody">
+<body id="appBody" class="gated">
+
+<section id="gateScreen" class="gate-screen">
+  <div class="gate-card">
+    <img src="assets/logo.png" alt="IdeaWeaver logo" class="gate-logo" />
+    <div class="gate-icon">🔒</div>
+    <h1>Access Code Required</h1>
+    <p>This practice exam is private. Enter the 10-digit access code you were given to continue.</p>
+    <form id="gateForm" autocomplete="off">
+      <input
+        type="text"
+        id="gateInput"
+        inputmode="numeric"
+        pattern="\d*"
+        maxlength="10"
+        placeholder="Enter 10-digit code"
+        aria-label="10-digit access code"
+      />
+      <button type="submit" class="btn btn-primary">Unlock</button>
+    </form>
+    <p id="gateError" class="gate-error hidden"></p>
+  </div>
+</section>
 
 <header class="topbar">
   <div class="brand">
@@ -25,6 +47,7 @@
 
 <nav class="exam-tabs" id="examTabs">
   <button class="exam-tab" data-exam="nvidia">NVIDIA Exam</button>
+  <button class="exam-tab" data-exam="nvidia2">NVIDIA Exam (Part 2)</button>
   <button class="exam-tab" data-exam="aws">AWS AI Exam</button>
 </nav>
 
@@ -50,7 +73,7 @@
       <p class="hero-sub" id="heroSub"></p>
     </div>
 
-    <div class="video-callout">
+    <div class="video-callout" id="videoCallout">
       <div class="video-callout-header">
         <span class="video-callout-icon">🎥</span>
         <div>
@@ -191,7 +214,9 @@
   <span id="footerText">IdeaWeaver · Unofficial certification practice material.</span>
 </footer>
 
+<script src="gate.js"></script>
 <script src="nvidia-questions.js"></script>
+<script src="nvidia-part2-questions.js"></script>
 <script src="aws-questions.js"></script>
 <script src="app.js"></script>
 </body>

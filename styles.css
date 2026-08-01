@@ -27,6 +27,11 @@ body.theme-aws {
   --brand-dark: #cc7a00;
 }
 
+body.theme-nvidia2 {
+  --brand: #00b3a4;
+  --brand-dark: #008c80;
+}
+
 * { box-sizing: border-box; }
 
 html, body {
@@ -39,6 +44,97 @@ html, body {
 }
 
 .hidden { display: none !important; }
+
+/* ---------- Access gate ---------- */
+body.gated > .topbar,
+body.gated > .exam-tabs,
+body.gated > #app,
+body.gated > .footer {
+  display: none;
+}
+
+#gateScreen {
+  display: none;
+}
+
+body.gated #gateScreen {
+  display: flex;
+}
+
+.gate-screen {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 36px 30px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.gate-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.gate-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.gate-card h1 {
+  font-size: 20px;
+  margin: 0 0 10px;
+  color: var(--text);
+}
+
+.gate-card p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+#gateForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#gateInput {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+#gateInput:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.gate-error {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--danger);
+}
 
 /* ---------- Topbar ---------- */
 .topbar {
