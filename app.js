@@ -491,6 +491,19 @@ function renderResults(timeExpired) {
 
   const timeNote = timeExpired ? " (time expired — auto-submitted)" : "";
   $("scoreDetail").textContent = `${correctCount} of ${questions.length} correct${timeNote}`;
+
+  const PASS_THRESHOLD = 70;
+  const passed = pct >= PASS_THRESHOLD;
+
+  $("scoreCircle").classList.remove("pass", "fail");
+  $("scoreCircle").classList.add(passed ? "pass" : "fail");
+
+  const passFailMessage = $("passFailMessage");
+  passFailMessage.classList.remove("pass", "fail");
+  passFailMessage.classList.add(passed ? "pass" : "fail");
+  passFailMessage.textContent = passed
+    ? `🎉 Congratulations, you passed! You scored ${pct}%, above the ${PASS_THRESHOLD}% passing mark.`
+    : `You scored ${pct}%, just short of the ${PASS_THRESHOLD}% needed to pass. Don't be discouraged — review your answers below and give it another attempt when you're ready. You've got this!`;
 }
 
 $("reviewBtn").addEventListener("click", () => {
